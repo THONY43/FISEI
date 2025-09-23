@@ -2,5 +2,6 @@
 *.exe
 compile.class
 conexionbd.java
+/node_modules
 
 
