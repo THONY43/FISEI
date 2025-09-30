@@ -1,444 +1,572 @@
-<!doctype html>
-
+ <!doctype html>
 <html lang="en" data-bs-theme="auto">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="" />
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-  <meta name="generator" content="Astro v5.13.2" />
-  <title>FISEI</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/" />
-  <script src="../assets/js/color-modes.js"></script>
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <meta name="theme-color" content="#712cf9" />
-  <link href="carousel.css" rel="stylesheet" />
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Astro v5.13.2" />
+    <title>FISEI </title>
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/carousel/"
+    />
+    <script src="../assets/js/color-modes.js"></script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="theme-color" content="#712cf9" />
+    <link href="carousel.css" rel="stylesheet" />
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
-    }
-
-    .b-example-divider {
-      width: 100%;
-      height: 3rem;
-      background-color: #0000001a;
-      border: solid rgba(0, 0, 0, 0.15);
-      border-width: 1px 0;
-      box-shadow:
-        inset 0 0.5em 1.5em #0000001a,
-        inset 0 0.125em 0.5em #00000026;
-    }
-
-    .b-example-vr {
-      flex-shrink: 0;
-      width: 1.5rem;
-      height: 100vh;
-    }
-
-    .bi {
-      vertical-align: -0.125em;
-      fill: currentColor;
-    }
-
-    .nav-scroller {
-      position: relative;
-      z-index: 2;
-      height: 2.75rem;
-      overflow-y: hidden;
-    }
-
-    .nav-scroller .nav {
-      display: flex;
-      flex-wrap: nowrap;
-      padding-bottom: 1rem;
-      margin-top: -1px;
-      overflow-x: auto;
-      text-align: center;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .btn-bd-primary {
-      --bd-violet-bg: #712cf9;
-      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-      --bs-btn-font-weight: 600;
-      --bs-btn-color: var(--bs-white);
-      --bs-btn-bg: var(--bd-violet-bg);
-      --bs-btn-border-color: var(--bd-violet-bg);
-      --bs-btn-hover-color: var(--bs-white);
-      --bs-btn-hover-bg: #6528e0;
-      --bs-btn-hover-border-color: #6528e0;
-      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-      --bs-btn-active-color: var(--bs-btn-hover-color);
-      --bs-btn-active-bg: #5a23c8;
-      --bs-btn-active-border-color: #5a23c8;
-    }
-
-    .bd-mode-toggle {
-      z-index: 1500;
-    }
-
-    .bd-mode-toggle .bi {
-      width: 1em;
-      height: 1em;
-    }
-
-    .bd-mode-toggle .dropdown-menu .active .bi {
-      display: block !important;
-    }
-  </style>
-</head>
-
-<body>
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="check2" viewBox="0 0 16 16">
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
-      </path>
-    </symbol>
-    <symbol id="circle-half" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-    </symbol>
-    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path
-        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
-      </path>
-      <path
-        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
-      </path>
-    </symbol>
-    <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
-      </path>
-    </symbol>
-  </svg>
-  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" aria-hidden="true">
-        <use href="#circle-half"></use>
-      </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </div>
-  <header data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">FISEI</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Horarios</a></li>
-
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">
-              Buscar
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-          aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-            width="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>Carrera Software</h1>
-              <p class="opacity-75">
-                El perfil de egreso del Ingeniero de Software resalta su capacidad para diseñar,
-                desarrollar y gestionar soluciones informáticas innovadoras, aplicando habilidades
-                técnicas y metodológicas que garantizan su adaptación a las exigencias del entorno profesional y
-                tecnológico. ..
-              </p>
-              <p>
-                <a class="btn btn-lg btn-primary"
-                  href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/software">Sign up today</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-            width="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>CARRERA DE INDUSTRIAL.</h1>
-              <p>
-                El Ingeniero Industrial de la FISEI está capacitado para optimizar
-                procesos productivos y de servicios, integrando conocimientos técnicos,
-                administrativos y humanos, con un enfoque sostenible y ético que responde a las
-                demandas del mercado y la sociedad.
-              </p>
-              <p><a class="btn btn-lg btn-primary"
-                  href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/ingenieria-industrial">Learn
-                  more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg aria-hidden="true" class="bd-placeholder-img" height="100%" preserveAspectRatio="xMidYMid slice"
-            width="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <div class="container">
-            <div class="carousel-caption text-end">
-              <h1>ROBOTICA</h1>
-              <p>
-                LA CARRERA DE TECNLOGIAS DE LA INFORMACION (TI) FORMA PROFESIONALES CAPACES DE DISEÑAR, IMPLEMENTAR Y
-                GESTIONAR SOLUCIONES TECNOLÓGICAS INNOVADORAS
-              </p>
-              <p>
-                <a class="btn btn-lg btn-primary"
-                  href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/tecnologias-de-la-informacion">Browse
-                  gallery</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: #0000001a;
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow:
+          inset 0 0.5em 1.5em #0000001a,
+          inset 0 0.125em 0.5em #00000026;
+      }
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+      .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+      }
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+      .bd-mode-toggle .bi {
+        width: 1em;
+        height: 1em;
+      }
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        ></path>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path
+          d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+        ></path>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path
+          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+        ></path>
+        <path
+          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+        ></path>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+        ></path>
+      </symbol>
+    </svg>
+    <div
+      class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
+    >
+      <button
+        class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        aria-label="Toggle theme (auto)"
+      >
+        <svg class="bi my-1 theme-icon-active" aria-hidden="true">
+          <use href="#circle-half"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <ul
+        class="dropdown-menu dropdown-menu-end shadow"
+        aria-labelledby="bd-theme-text"
+      >
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="light"
+            aria-pressed="false"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#sun-fill"></use>
+            </svg>
+            Light
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="dark"
+            aria-pressed="false"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#moon-stars-fill"></use>
+            </svg>
+            Dark
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center active"
+            data-bs-theme-value="auto"
+            aria-pressed="true"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#circle-half"></use>
+            </svg>
+            Auto
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
     </div>
-    <!-- Marketing messaging and featurettes
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">FISEI</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Horarios</a></li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Buscar"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Buscar
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <svg
+              aria-hidden="true"
+              class="bd-placeholder-img"
+              height="100%"
+              preserveAspectRatio="xMidYMid slice"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>CARRERA DE SOFTWARE </h1>
+                <p class="opacity-75">
+                  La carrera de Ingeniería de Software se enfoca en aplicar principios de ingeniería para el diseño, desarrollo, prueba, mantenimiento y gestión de sistemas de software a través del uso de metodologías y herramientas avanzadas.
+                </p>
+                <p>
+                  <a class="btn btn-lg btn-primary" href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/software">Mas Informacion</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              aria-hidden="true"
+              class="bd-placeholder-img"
+              height="100%"
+              preserveAspectRatio="xMidYMid slice"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>CARRERA DE AUTOMATIZACION Y ROBOTICA </h1>
+                <p>
+                  La carrera de Automatización y Robótica se enfoca en el diseño, desarrollo e implementación de sistemas automatizados y robots para mejorar la eficiencia en diversos procesos industriales.
+                </p>
+                <p><a class="btn btn-lg btn-primary" href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/tecnologias-de-la-informacion">Mas Informacion</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              aria-hidden="true"
+              class="bd-placeholder-img"
+              height="100%"
+              preserveAspectRatio="xMidYMid slice"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-end">
+                <h1>CARRERA DE INGENIERIA INDUSTRIAL</h1>
+                <p>
+                  La carrera de Ingeniería Industrial se enfoca en el diseño, mejora e implementación de sistemas integrados de personas, materiales, información, equipos y energía.
+                </p>
+                <p>
+                  <a class="btn btn-lg btn-primary" href="https://fisei.uta.edu.ec/v4.0/index.php/carreras-y-programas/ingenieria-industrial">Mas Informacion</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Marketing messaging and featurettes
   ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing">
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-          <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
-            preserveAspectRatio="xMidYMid slice" role="img" width="140" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <h2 class="fw-normal">Administracion de redes</h2>
-          <p>
-            La administración de redes implica el diseño, configuración, monitoreo y mantenimiento de infraestructuras
-            de comunicación, asegurando la conectividad, seguridad y eficiencia en el intercambio de información dentro
-            de una organización.
-          </p>
-          <p>
-            <a class="btn btn-secondary" href="https://fisei.uta.edu.ec/v4.0/index.php/laboratorios/lislab">VER DETALLES
-              &raquo;</a>
-          </p>
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+      <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <svg
+              aria-label="Placeholder"
+              class="bd-placeholder-img rounded-circle"
+              height="140"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="140"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <h2 class="fw-normal">Administracion de redes</h2>
+            <p>
+              Departamento de gestion de laboratorios, prestamos de equipos y soporte al usuario
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="http://172.21.123.13:3000/login">Mas Informacion &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg
+              aria-label="Placeholder"
+              class="bd-placeholder-img rounded-circle"
+              height="140"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="140"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <h2 class="fw-normal">CTT - Talleres</h2>
+            <p>
+              Departamento encargado de planificar cursos de capacitacion continua enfocados al area de tecnologia y talleres para estudiantes y docentes.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="https://ctt-talleresfisei.uta.edu.ec/">Mas Informacion &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <svg
+              aria-label="Placeholder"
+              class="bd-placeholder-img rounded-circle"
+              height="140"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="140"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              ></rect>
+            </svg>
+            <h2 class="fw-normal">Biblioteca</h2>
+            <p>
+              Departamento que permite el permite el prestamo de libros y espacios de trabajo.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="https://fisei.uta.edu.ec/v4.0/index.php/bibliotecas">Mas Informacion &raquo;</a>
+            </p>
+          </div>
+          <!-- /.col-lg-4 -->
         </div>
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
-            preserveAspectRatio="xMidYMid slice" role="img" width="140" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <h2 class="fw-normal">CTT - TALLERES</h2>
-          <p>
-            CTT TALLERES ES UN DEPARTAMENTO DE CURSOS DE PLANIFICAR CURSOS DE EDUCACION CONTINUA, CAPACITACION Y
-            ENTRENAMIENTO PARA EMPRESAS E INSTITUCIONES PUBLICAS Y PRIVADAS.
-          </p>
-          <p>
-            <a class="btn btn-secondary" href="https://ctt-talleresfisei.uta.edu.ec/">VER DETALLES &raquo;</a>
-          </p>
+        <!-- /.row -->
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              CONVOCATORIA
+              <span class="text-body-secondary">PARA EL PROCESO DE SELECCIÓN DE AYUDANTES DE INVESTIGACIÓN</span>
+            </h2>
+            <p class="lead">
+              Esta sección desempeña un papel crucial como espacio informativo destinado a comunicar oportunidades de participación y colaboración académica en el ámbito educativo. Proporciona una descripción detallada de los procesos y requisitos para aquellos interesados ​​en postularse como ayudantes de investigación. La finalidad primordial de esta sección es anunciar de manera clara y transparente las oportunidades disponibles para estudiantes o profesionales que aspiran a desempeñar roles de asistencia en el ámbito académico, contribuyendo así al fortalecimiento de la estructura educativa mediante la colaboración de individuos comprometidos y calificados.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <svg
+              aria-label="Placeholder: 500x500"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              height="500"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="500"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              ></rect>
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
         </div>
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <svg aria-label="Placeholder" class="bd-placeholder-img rounded-circle" height="140"
-            preserveAspectRatio="xMidYMid slice" role="img" width="140" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-          </svg>
-          <h2 class="fw-normal">BUBLIOTECA</h2>
-          <p>
-            La biblioteca de la FISEI es un espacio dedicado al aprendizaje y la investigación, ofreciendo una amplia
-            colección de recursos académicos y tecnológicos para apoyar el desarrollo integral de los estudiantes y la
-            comunidad educativa.
-          </p>
-          <p>
-            <a class="btn btn-secondary" href="https://fisei.uta.edu.ec/v4.0/index.php/biblio">VER DETALLES &raquo;</a>
-          </p>
-        </div>
-        <!-- /.col-lg-4 -->
-      </div>
-      <!-- /.row -->
-      <!-- START THE FEATURETTES -->
-      <hr class="featurette-divider" />
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">
-            CONVOCATORIA AYUDANTES DE INVESTIGACIÓN JULIO 2025
-          </h2>
-          <p class="lead">
-            Esta sección desempeña un papel crucial como espacio informativo destinado a comunicar oportunidades de
-            participación y colaboración académica en el ámbito educativo. Proporciona una descripción detallada de los
-            procesos y requisitos para aquellos interesados ​​en postularse como ayudantes de investigación. La
-            finalidad primordial de esta sección es anunciar de manera clara y transparente las oportunidades
-            disponibles para estudiantes o profesionales que aspiran a desempeñar roles de asistencia en el ámbito
-            académico, contribuyendo así al fortalecimiento de la estructura educativa mediante la colaboración de
-            individuos comprometidos y calificados.
-          </p>
-        </div>
-        <div class="col-md-5">
-          <svg aria-label="Placeholder: 500x500"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
-            preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-            <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-              500x500
-            </text>
-          </svg>
-        </div>
-      </div>
-      <hr class="featurette-divider" />
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">
-            CLUBES DEPORTIVOS FISEI 2025
-          </h2>
-          <p class="lead">
-            La Universidad Técnica de Ambato abre las inscripciones para sus clubes deportivos, espacios donde podrás
-            entrenar, compartir, crecer y representar con orgullo a tu universidad.
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+              CLUBES DEPORTIVOS - UTA
 
-            Si te apasiona el deporte, esta es tu oportunidad. Participa en uno de nuestros clubes: fútbol, natación,
-            baloncesto, escalada deportiva, danza y recreación, o paralímpico.
 
-            Las inscripciones estarán abiertas hasta el 28 de abril. Para unirte necesitas presentar: ficha estudiantil,
-            certificación de estar legalmente matriculado, oficio dirigido a la Directora del CCF solicitando integrar
-            el club, copia de la cédula y una carpeta con el color correspondiente al club.
+            </h2>
+            <p class="lead">
+              La Universidad Técnica de Ambato abre las inscripciones para sus clubes deportivos, espacios donde podrás entrenar, compartir, crecer y representar con orgullo a tu universidad.
 
-            No dejes pasar esta oportunidad de vivir nuevas experiencias, fortalecer tu bienestar y ser parte del
-            espíritu deportivo de la UTA.
-          </p>
+Si te apasiona el deporte, esta es tu oportunidad. Participa en uno de nuestros clubes: fútbol, natación, baloncesto, escalada deportiva, danza y recreación, o paralímpico.
+
+Las inscripciones estarán abiertas hasta el 28 de abril. Para unirte necesitas presentar: ficha estudiantil, certificación de estar legalmente matriculado, oficio dirigido a la Directora del CCF solicitando integrar el club, copia de la cédula y una carpeta con el color correspondiente al club.
+
+No dejes pasar esta oportunidad de vivir nuevas experiencias, fortalecer tu bienestar y ser parte del espíritu deportivo de la UTA.
+
+¡No te quedes fuera! Entrena, crece y vibra con la UTA.
+            </p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <svg
+              aria-label="Placeholder: 500x500"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              height="500"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="500"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              ></rect>
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
         </div>
-        <div class="col-md-5 order-md-1">
-          <svg aria-label="Placeholder: 500x500"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
-            preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-            <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-              500x500
-            </text>
-          </svg>
+        <hr class="featurette-divider" />
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              VI CONGRESO DE CIENCIA DE LA COMPUTACIÓN,
+            </h2>
+            <p class="lead">
+              Esta sección sobre el Congreso Internacional de Ciencia de la Computación, Electrónica e Ingeniería Industrial que se desarrolla cada año, se presenta como un espacio dedicado a la promoción y difusión de los avances más destacados en estas disciplinas interrelacionadas. Este congreso reúne a expertos, investigadores y profesionales de todo el mundo para compartir conocimientos, explorar tendencias emergentes y fomentar la colaboración en los ámbitos de la ciencia de la computación, la electrónica y la ingeniería industrial. Esta sección tiene como objetivo principal crear un foro dinámico y colaborativo que propicie el intercambio de ideas innovadoras y el desarrollo de soluciones a los desafíos más apremiantes en estas áreas. Busca inspirar la investigación de vanguardia y catalizar avances tecnológicos que impacten positivamente en la sociedad.
+
+La sección abarca diversas temáticas dentro de la ciencia de la computación, electrónica y la ingeniería industrial. Desde desarrollos en inteligencia artificial, ciberseguridad y sistemas embebidos hasta avances en automatización, control de procesos y diseño de sistemas electrónicos, el congreso ofrece una amplia perspectiva de los temas más relevantes en estas disciplinas interconectadas.
+
+El congreso fomenta la participación multidisciplinaria, proporcionando un espacio inclusivo donde profesionales e investigadores de diversas disciplinas pueden compartir sus perspectivas y colaborar en proyectos interdisciplinarios que integren la ciencia de la computación, la electrónica y la ingeniería industrial.
+
+Se detalla el formato del evento, que puede incluir conferencias magistrales de expertos destacados, sesiones de presentación de trabajos académicos, talleres interactivos y oportunidades para la exposición de innovaciones tecnológicas. Además, se destaca la posibilidad de establecer conexiones y redes con colegas y líderes de la industria.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <svg
+              aria-label="Placeholder: 500x500"
+              class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              height="500"
+              preserveAspectRatio="xMidYMid slice"
+              role="img"
+              width="500"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Placeholder</title>
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-bg)"
+              ></rect>
+              <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
+                500x500
+              </text>
+            </svg>
+          </div>
         </div>
+        <hr class="featurette-divider" />
+        <!-- /END THE FEATURETTES -->
       </div>
-      <hr class="featurette-divider" />
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">
-            And lastly, this one.
-            <span class="text-body-secondary">Checkmate.</span>
-          </h2>
-          <p class="lead">
-            And yes, this is the last block of representative placeholder
-            content. Again, not really intended to be actually read, simply
-            here to give you a better view of what this would look like with
-            some actual content. Your content.
-          </p>
-        </div>
-        <div class="col-md-5">
-          <svg aria-label="Placeholder: 500x500"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
-            preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-            <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">
-              500x500
-            </text>
-          </svg>
-        </div>
-      </div>
-      <hr class="featurette-divider" />
-      <!-- /END THE FEATURETTES -->
-    </div>
-    <!-- /.container -->
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-end"><a href="#">Back to top</a></p>
-      <p>
-        &copy; 2017–2025 Company, Inc. &middot;
-        <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-      </p>
-    </footer>
-  </main>
-  <script src="../assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
-</body>
-
+      <!-- /.container -->
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p>
+          &copy; 2017–2025 Company, Inc. &middot;
+          <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+        </p>
+      </footer>
+    </main>
+    <script
+      src="../assets/dist/js/bootstrap.bundle.min.js"
+      class="astro-vvvwv3sm"
+    ></script>
+  </body>
 </html>
